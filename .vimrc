@@ -49,4 +49,43 @@ filetype plugin indent on    " required
 " " Put your non-Plugin stuff after this line
 "
 
+"custom settings
+set lines=35 columns=150
+set colorcolumn=80
 
+set tabstop=4
+set softtabstop=4
+set expandtab
+set showcmd
+set cursorline
+set wildmenu
+set showmatch
+set incsearch
+set hlsearch
+
+syntax enable
+
+:set number relativenumber
+
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+"
+" " $/^ doesn't do anything
+nnoremap $ <nop>
+nnoremap ^ <nop>
+
+" change cursor shape
+if exists('$TMUX')
+    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
