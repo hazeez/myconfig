@@ -20,6 +20,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Plugin 'git://git.wincent.com/command-t.git'
 " " git repos on your local machine (i.e. when working on your own plugin)
 " Plugin 'file:///home/gmarik/path/to/plugin'
+" B
 " " The sparkup vim script is in a subdirectory of this repo called vim.
 " " Pass the path to set the runtimepath properly.
 " Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
@@ -28,8 +29,11 @@ Plugin 'VundleVim/Vundle.vim'
 " " Plugin 'ascenator/L9', {'name': 'newL9'}
 "
 
-Plugin 'morhetz/gruvbox'
-"Plugin 'dracula/vim'
+"Plugin 'morhetz/gruvbox'
+Plugin 'dracula/vim'
+Plugin 'Command-T'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'itchyny/lightline.vim'
 
 " " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -62,6 +66,11 @@ set wildmenu
 set showmatch
 set incsearch
 set hlsearch
+set hidden
+set history=100
+set nowrap
+set smartindent
+set autoindent
 
 syntax enable
 
@@ -89,3 +98,28 @@ else
     let &t_SI = "\<Esc>]50;CursorShape=1\x7"
     let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 endif
+
+"setting the leader to the space key
+let mapleader=" "
+
+"reload the vim configuration without having to restart the editor
+map <leader>s :source ~/.vimrc<CR>
+
+"dealing white spaces
+autocmd BufWritePre * :%s/\s\+$//e
+
+"cancel a search with an escape
+nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+
+"re-open previously opened file
+nnoremap <Leader><Leader> :e#<CR>
+
+" ignore some files for command T
+set wildignore+=*.log,*.sql,*.cache
+
+"re-index files for command T as it does not happen automatically
+noremap <Leader>r :CommandTFlush<CR>
+
+"for lightline to display properly
+set laststatus=2
+set noshowmode
