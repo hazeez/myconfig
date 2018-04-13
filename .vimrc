@@ -29,9 +29,10 @@ Plugin 'VundleVim/Vundle.vim'
 " " Plugin 'ascenator/L9', {'name': 'newL9'}
 "
 
-"Plugin 'morhetz/gruvbox'
-Plugin 'dracula/vim'
+Plugin 'morhetz/gruvbox'
+Plugin 'crusoexia/vim-monokai'
 Plugin 'Command-T'
+Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'itchyny/lightline.vim'
 
@@ -54,6 +55,7 @@ filetype plugin indent on    " required
 "
 
 "custom settings
+color gruvbox
 set lines=35 columns=150
 set colorcolumn=80
 
@@ -65,7 +67,7 @@ set cursorline
 set wildmenu
 set showmatch
 set incsearch
-set hlsearch
+"set hlsearch
 set hidden
 set history=100
 set nowrap
@@ -73,6 +75,7 @@ set smartindent
 set autoindent
 
 syntax enable
+syntax on
 
 :set number relativenumber
 
@@ -109,7 +112,7 @@ map <leader>s :source ~/.vimrc<CR>
 autocmd BufWritePre * :%s/\s\+$//e
 
 "cancel a search with an escape
-nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
+"nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 
 "re-open previously opened file
 nnoremap <Leader><Leader> :e#<CR>
@@ -123,3 +126,13 @@ noremap <Leader>r :CommandTFlush<CR>
 "for lightline to display properly
 set laststatus=2
 set noshowmode
+
+" custom shortcut for toggle comment using nerd commenter
+nnoremap <Leader>/ :call NERDComment(0, "toggle")<CR>
+vnoremap <Leader>/ :call NERDComment(0, "toggle")<CR>
+
+"nerd tree toggle
+nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>j :NERDTreeFind<CR>
+let NERDTreeShowHidden=1
+let NERDTreeMapActivateNode='<right>'
