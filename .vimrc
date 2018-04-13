@@ -55,7 +55,7 @@ filetype plugin indent on    " required
 "
 
 "custom settings
-color gruvbox
+color monokai
 set lines=35 columns=150
 set colorcolumn=80
 
@@ -136,3 +136,6 @@ nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>j :NERDTreeFind<CR>
 let NERDTreeShowHidden=1
 let NERDTreeMapActivateNode='<right>'
+
+"color support for gruvbox
+let g:gruvbox_termcolors=256
