@@ -35,6 +35,9 @@ Plugin 'Command-T'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'itchyny/lightline.vim'
+Plugin 'ervandew/supertab'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'terryma/vim-multiple-cursors'
 
 " " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -57,7 +60,7 @@ filetype plugin indent on    " required
 "custom settings
 color monokai
 set lines=35 columns=150
-set colorcolumn=80
+set colorcolumn=90
 
 set tabstop=4
 set softtabstop=4
@@ -139,3 +142,8 @@ let NERDTreeMapActivateNode='<right>'
 
 "color support for gruvbox
 let g:gruvbox_termcolors=256
+
+"remove white space on save
+autocmd BufWritePre * :%s/\s\+$//e
+
+
